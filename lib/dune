@@ -1,0 +1,5 @@
+(library
+ (name olzw)
+ (libraries core)
+ (ocamlopt_flags
+  (:standard -O3)))

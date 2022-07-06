@@ -1,0 +1,6 @@
+(executable
+ (public_name olzw)
+ (name main)
+ (libraries olzw core unix)
+ (ocamlopt_flags
+  (:standard -O3)))
