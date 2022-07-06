@@ -13,10 +13,10 @@ dune exec olzw
 
 File | Compression Ratio | Original Size (Mb) | Compressed Size (Mb) | Compression Time (s) | Decompression Time (s)
 --- | --- | --- | --- | --- | ---
-`t8.shakespeare.txt` | `2.41` | `5.46` | `2.26` | `1.46` | `0.524`
-`e.coli.txt` | `3.80` | `4.64` | `1.22` | `1.07` | `0.292`
-`bible.txt` | `2.84` | `4.05` | `1.43` | `0.982` | `0.344`
-`pi.txt` | `2.15` | `1.00` | `0.464` | `0.296` | `0.115`
+`t8.shakespeare.txt` | 2.41 | 5.46 | 2.26 | 1.46 | 0.524
+`e.coli.txt` | 3.80 | 4.64 | 1.22 | 1.07 | 0.292
+`bible.txt` | 2.84 | 4.05 | 1.43 | 0.982 | 0.344
+`pi.txt` | 2.15 | 1.00 | 0.464 | 0.296 | 0.115
 
 ---
 
