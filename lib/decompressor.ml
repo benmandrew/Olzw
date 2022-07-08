@@ -23,19 +23,19 @@ let decode_symbol dict symbol prev_str =
   (out, new_str, dict')
 
 (* Tail recursive auxiliary function to avoid stack overflow *)
-let rec decompress_aux dict b i prev_str out_aux =
-  if i >= Bytes.length b then out_aux
+let rec decompress_aux dict vs i prev_str out_aux =
+  if i >= Array.length vs then out_aux
   else
-    let symbol = Stdlib.Bytes.get_uint16_be b i in
+    let symbol = vs.(i) in
     let out, write, dict' = decode_symbol dict symbol prev_str in
-    decompress_aux dict' b (i + 2) write (out :: out_aux)
+    decompress_aux dict' vs (i + 2) write (out :: out_aux)
 
-let decompress alphabet b =
+let decompress alphabet vs =
   let dict = Dictionary.Decomp.initialise alphabet in
   let first_char =
-    match Dictionary.Decomp.get dict (Stdlib.Bytes.get_uint16_be b 0) with
+    match Dictionary.Decomp.get dict vs.(0) with
     | None -> raise (Exception "Initial symbol not in dictionary")
     | Some s -> s
   in
   String.concat ""
-    (List.rev (first_char :: decompress_aux dict b 2 first_char []))
+    (List.rev (first_char :: decompress_aux dict vs 2 first_char []))

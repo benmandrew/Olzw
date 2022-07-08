@@ -32,4 +32,10 @@ t8.shakespeare.txt
 bible.txt
 e.coli.txt
 pi.txt
+all.txt
+hello.txt
 compressed.bin
+test.bin
+hello.bin
+
+.vscode/

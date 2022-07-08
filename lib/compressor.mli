@@ -1,1 +1,1 @@
-val compress : string list -> string -> bytes
+val compress : string list -> string -> int list

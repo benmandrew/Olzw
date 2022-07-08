@@ -7,14 +7,14 @@ let add_to_dictionary dict s pos match_len =
     | Some dict -> dict
 
 (* Tail recursive auxiliary function to avoid stack overflow *)
-let rec compress_aux s dict pos b_aux =
-  if pos + 1 >= String.length s then b_aux
+let rec compress_aux s dict pos v_aux =
+  if pos + 1 >= String.length s then v_aux
   else
-    let b, match_len = Dictionary.Comp.longest_match dict s pos in
+    let v, match_len = Dictionary.Comp.longest_match dict s pos in
     let dict' = add_to_dictionary dict s pos match_len in
-    compress_aux s dict' (pos + match_len) (b :: b_aux)
+    compress_aux s dict' (pos + match_len) (v :: v_aux)
 
 let compress alphabet s =
   let dict = Dictionary.Comp.initialise alphabet in
   let open Stdlib in
-  Bytes.concat Bytes.empty (List.rev (compress_aux s dict 0 []))
+  List.rev (compress_aux s dict 0 [])
