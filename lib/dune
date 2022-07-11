@@ -1,6 +1,8 @@
 (library
  (name olzw)
  (libraries core ctypes)
- (ocamlopt_flags (:standard -O3))
+ (ocamlopt_flags
+  (:standard -O3))
  (foreign_stubs
-  (language c) (names pack)))
+  (language c)
+  (names pack)))

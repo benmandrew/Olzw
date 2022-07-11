@@ -14,7 +14,7 @@ let rec compress_aux s dict pos v_aux =
     let dict' = add_to_dictionary dict s pos match_len in
     compress_aux s dict' (pos + match_len) (v :: v_aux)
 
-let compress alphabet s =
-  let dict = Dictionary.Comp.initialise alphabet in
+let compress alphabet codeword_size s =
+  let dict = Dictionary.Comp.initialise alphabet codeword_size in
   let open Stdlib in
   List.rev (compress_aux s dict 0 [])

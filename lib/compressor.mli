@@ -1,1 +1,1 @@
-val compress : string list -> string -> int list
+val compress : string list -> int -> string -> int list
