@@ -28,14 +28,8 @@ setup.log
 # Local OPAM switch
 _opam/
 
-t8.shakespeare.txt
-bible.txt
-e.coli.txt
-pi.txt
-all.txt
-hello.txt
-compressed.bin
-test.bin
-hello.bin
+samples/
+main.py
+concat.py
 
 .vscode/
