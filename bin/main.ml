@@ -1,9 +1,5 @@
 open Olzw
 
-let infile = "hello.txt"
-let outfile = "hello.bin"
-let codeword_size = 16
-
 let alphabet =
   let explode str =
     let rec exp a b = if a < 0 then b else exp (a - 1) (str.[a] :: b) in
@@ -16,42 +12,47 @@ let alphabet =
        \ \
         !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~")
 
-(* let rec print_ints = function
-   | [] -> print_char '\n'
-   | i::is -> print_int i; print_char ' '; print_ints is *)
+let compress infile outfile codeword_size =
+  let s = Core.In_channel.read_all infile in
+  let start = Unix.gettimeofday () in
+  let codes = Compressor.compress alphabet codeword_size s in
+  let stop = Unix.gettimeofday () in
+  Printf.printf "Compression time: %fs\n%!" (stop -. start);
+  Pack.pack outfile codeword_size codes
 
-(* let print_int_arr arr =
-   let n = Array.length arr in
-   for i = 0 to n - 1 do
-     print_int arr.(i); print_char ' '
-   done;
-   print_char '\n' *)
+let decompress infile outfile codeword_size =
+  let codes = Pack.unpack infile codeword_size in
+  let s = Decompressor.decompress alphabet codeword_size codes in
+  Core.Out_channel.write_all outfile ~data:s
+
+let usage_msg =
+  "olzw compress -c <level> -i <input> -o <output>\n\
+   olzw decompress -c <level> -i <input> -o <output>"
+
+let codeword_size = ref 0
+let infile = ref ""
+let outfile = ref ""
+let do_compression = ref true
+
+exception Exception of string
+
+let anon_fun s =
+  match s with
+  | "compress" -> do_compression := true
+  | "decompress" -> do_compression := false
+  | s ->
+      raise (Exception (String.concat " " [ "Unrecognisable parameter:"; s ]))
+
+let speclist =
+  [
+    ("-c", Arg.Set_int codeword_size, "Set compression level: 9 to 16 inclusive");
+    ("-i", Arg.Set_string infile, "Set input file name");
+    ("-o", Arg.Set_string outfile, "Set output file name");
+  ]
 
 let () =
-  let input = Core.In_channel.read_all infile in
-  (* let start = Unix.gettimeofday () in *)
-  let vs = Compressor.compress alphabet input in
-  (* let stop = Unix.gettimeofday () in
-     Printf.printf "Compression time: %fs\n%!" (stop -. start); *)
-  Pack.pack outfile codeword_size vs;
-
-  let vs' = Pack.unpack outfile codeword_size in
-  (* print_ints vs;
-     print_int_arr vs' *)
-  let s = Decompressor.decompress alphabet vs' in
-  print_int (String.length s);
-  print_char '\n';
-  print_char '\n';
-
-  print_string s;
-  print_char '\n'
-
-(* write_bytes outfile b;
-   Printf.printf "Original size: %d\n%!" (get_file_size infile);
-   Printf.printf "Compressed size: %d\n%!" (get_file_size outfile);
-   Printf.printf "Compression ratio: %f\n%!" (float_of_int (get_file_size infile) /. float_of_int (get_file_size outfile));
-   let b' = read_bytes outfile in
-   let start = Unix.gettimeofday () in
-   let _ = Decompressor.decompress alphabet b' in
-   let stop = Unix.gettimeofday () in
-   Printf.printf "Decompression time: %fs\n%!" (stop -. start) *)
+  Arg.parse speclist anon_fun usage_msg;
+  if !codeword_size < 9 || !codeword_size > 16 then
+    raise (Exception "Compression level not in range [9,16]")
+  else if !do_compression then compress !infile !outfile !codeword_size
+  else decompress !infile !outfile !codeword_size

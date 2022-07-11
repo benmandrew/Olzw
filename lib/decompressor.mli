@@ -1,1 +1,1 @@
-val decompress : string list -> int array -> string
+val decompress : string list -> int -> int array -> string

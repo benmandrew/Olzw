@@ -6,7 +6,6 @@ module Comp = struct
   type t = { d : (string, int) Core.Hashtbl.t; n : int; max_dict_size : int }
 
   let insert dict str =
-    Stdlib.Printf.printf "%S %d\n" str dict.n;
     if dict.n < dict.max_dict_size then (
       Core.Hashtbl.add_exn dict.d ~key:str ~data:dict.n;
       Some { d = dict.d; n = dict.n + 1; max_dict_size = dict.max_dict_size })
@@ -43,7 +42,6 @@ module Decomp = struct
   type t = { d : (int, string) Core.Hashtbl.t; n : int; max_dict_size : int }
 
   let insert dict str =
-    Stdlib.Printf.printf "%S %d\n" str dict.n;
     if dict.n < dict.max_dict_size then (
       Core.Hashtbl.add_exn dict.d ~key:dict.n ~data:str;
       Some { d = dict.d; n = dict.n + 1; max_dict_size = dict.max_dict_size })

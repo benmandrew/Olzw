@@ -30,8 +30,9 @@ let rec decompress_aux dict vs i prev_str out_aux =
     let out, write, dict' = decode_symbol dict symbol prev_str in
     decompress_aux dict' vs (i + 1) write (out :: out_aux)
 
-let decompress alphabet vs =
-  let dict = Dictionary.Decomp.initialise alphabet in
+let decompress alphabet codeword_size vs =
+  Printf.printf "\n";
+  let dict = Dictionary.Decomp.initialise alphabet codeword_size in
   let first_char =
     match Dictionary.Decomp.get dict vs.(0) with
     | None -> raise (Exception "Initial symbol not in dictionary")
