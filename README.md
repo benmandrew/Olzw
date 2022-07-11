@@ -21,7 +21,7 @@ File | Compression Ratio | Original Size (Mb) | Compressed Size (Mb) | Compressi
 
 ---
 
-- `t8.shakespeare.txt` is the complete works of Willam Shakespeare ([link](https://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/files/t8.shakespeare.txt)).
+- `t8.shakespeare.txt` is the complete works of William Shakespeare ([link](https://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/files/t8.shakespeare.txt)).
 - `e.coli.txt` is the complete genome of the E. Coli bacterium ([link](https://corpus.canterbury.ac.nz/descriptions/#large)).
 - `bible.txt` is the King James version of the bible ([link](https://corpus.canterbury.ac.nz/descriptions/#large)).
 - `pi.txt` is the first million digits of pi ([link](https://corpus.canterbury.ac.nz/descriptions/#misc)).
