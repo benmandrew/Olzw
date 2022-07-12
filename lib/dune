@@ -5,4 +5,6 @@
   (:standard -O3))
  (foreign_stubs
   (language c)
+  (flags
+   (-O3 -fPIC -Wno-unused-result))
   (names pack)))

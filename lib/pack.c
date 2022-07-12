@@ -103,11 +103,11 @@ CAMLprim value pack_c(value filename, value codeword_size, value codewords,
                       value n_codewords) {
   CAMLparam4(filename, codeword_size, codewords, n_codewords);
   size_t n_bytes;
-  uint16_t *packed = pack((size_t)Long_val(codeword_size), (value *)codewords,
+  uint8_t *packed = pack((size_t)Long_val(codeword_size), (value *)codewords,
                           (size_t)Long_val(n_codewords), &n_bytes);
   write_bin(String_val(filename), (char *)packed, n_bytes);
   free(packed);
-  CAMLreturn0;
+  CAMLreturn(Val_unit);
 }
 
 /* d = --------
