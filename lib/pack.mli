@@ -1,2 +1,2 @@
-val pack : string -> int -> int list -> unit
+val pack : string -> int -> Compressor.comp_stream -> unit
 val unpack : string -> int -> int array

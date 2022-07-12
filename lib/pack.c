@@ -7,7 +7,7 @@
 #include "caml/mlvalues.h"
 
 void write_bin(const char *filename, uint8_t *buffer, size_t n) {
-  FILE *fptr = fopen(filename, "wb");
+  FILE *fptr = fopen(filename, "ab");
   fwrite(buffer, n, 1, fptr);
   fclose(fptr);
 }

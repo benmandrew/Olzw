@@ -18,6 +18,7 @@ File | Compression Ratio | Original Size (Mb) | Compressed Size (Mb) | Compressi
 `bible.txt` | 2.89 | 4.05 | 1.40 | 0.891 | 16
 `pi.txt` | 2.18 | 1.00 | 0.458 | 0.170 | 14
 `all.txt` | 1.31 | 15.1 | 11.5 | 3.37 | 9
+`all10.txt` | 1.31 | 151 | 115 | 30.5 | 13
 
 ---
 
@@ -26,3 +27,4 @@ File | Compression Ratio | Original Size (Mb) | Compressed Size (Mb) | Compressi
 - `bible.txt` is the King James version of the bible ([link](https://corpus.canterbury.ac.nz/descriptions/#large)).
 - `pi.txt` is the first million digits of pi ([link](https://corpus.canterbury.ac.nz/descriptions/#misc)).
 - `all.txt` is all of the above concatenated together.
+- `all10.txt` is `all.txt` repeated 10 times.

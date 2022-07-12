@@ -16,13 +16,16 @@ let compress infile outfile codeword_size =
   let s = Core.In_channel.read_all infile in
   let start = Unix.gettimeofday () in
   let codes = Compressor.compress alphabet codeword_size s in
+  Pack.pack outfile codeword_size codes;
   let stop = Unix.gettimeofday () in
-  Printf.printf "Compression time: %fs\n%!" (stop -. start);
-  Pack.pack outfile codeword_size codes
+  Printf.printf "Compression time: %fs\n%!" (stop -. start)
 
 let decompress infile outfile codeword_size =
   let codes = Pack.unpack infile codeword_size in
+  let start = Unix.gettimeofday () in
   let s = Decompressor.decompress alphabet codeword_size codes in
+  let stop = Unix.gettimeofday () in
+  Printf.printf "Decompression time: %fs\n%!" (stop -. start);
   Core.Out_channel.write_all outfile ~data:s
 
 let usage_msg =
