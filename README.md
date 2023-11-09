@@ -6,7 +6,8 @@
 
 ```bash
 dune build
-dune exec olzw
+dune exec -- olzw compress -c 12 -i infile -o compressed
+dune exec -- olzw decompress -c 12 -i compressed -o decompressed
 ```
 
 ## Example Compression Ratios
