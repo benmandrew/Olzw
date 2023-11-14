@@ -10,7 +10,7 @@ license: "MIT"
 homepage: "https://github.com/benmandrew/Olzw"
 bug-reports: "https://github.com/benmandrew/Olzw/issues"
 depends: [
-  "ocaml"
+  "ocaml" {>= "4.04"}
   "dune" {>= "3.0"}
   "ctypes"
   "core"

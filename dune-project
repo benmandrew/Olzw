@@ -17,6 +17,10 @@
  (name olzw)
  (synopsis "Lempel-Ziv-Welch (LZW) streaming compressor and decompressor for ASCII text files")
  (description "Lempel-Ziv-Welch (LZW) streaming compressor and decompressor for ASCII text files")
- (depends ocaml dune ctypes core))
+ (depends
+  (ocaml (>= 4.04))
+  dune
+  ctypes
+  core))
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
